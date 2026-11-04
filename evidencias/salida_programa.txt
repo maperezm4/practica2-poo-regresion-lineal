@@ -1,0 +1,126 @@
+PRACTICA 2 - PROGRAMACION ORIENTADA A OBJETOS
+Regresion lineal simple y multiple en C++
+
+==================================================
+REGRESION SIMPLE (venta de helados)
+==================================================
+Archivo: data/ice_cream_selling_data.csv
+Muestras: 49
+Caracteristicas: 1
+
+  x1:  media = 0.271755   desviacion = 2.67   min = -4.66226   max = 4.89903
+  y :  media = 15.9053   desviacion = 12.1389
+
+Entrenamiento: 40 muestras
+Prueba: 9 muestras
+
+weights: -2.09892  
+bias: 16.2385
+
+Predicciones sobre el conjunto de prueba:
+  y_hat: 19.1906    y_real: 32.2845    error: -13.094
+  y_hat: 18.478    y_real: 20.2797    error: -1.80166
+  y_hat: 17.7149    y_real: 12.6152    error: 5.09976
+  y_hat: 16.5528    y_real: 4.67364    error: 11.8791
+  y_hat: 15.9078    y_real: 2.57678    error: 13.331
+  y_hat: 15.3916    y_real: 0.953115    error: 14.4385
+  y_hat: 14.654    y_real: 7.41209    error: 7.24193
+  y_hat: 14.1138    y_real: 20.1144    error: -6.00065
+  y_hat: 13.66    y_real: 28.9122    error: -15.2522
+
+score (error) entrenamiento: 148.875
+score (error) prueba:        116.565
+R2 entrenamiento: 0.0287413
+R2 prueba:        0.0148532
+
+==================================================
+REGRESION MULTIPLE (notas de estudiantes)
+==================================================
+Archivo: data/student_exam_scores.csv
+Muestras: 200
+Caracteristicas: 4
+
+  x1:  media = 6.3255   desviacion = 3.21924   min = 1   max = 12
+  x2:  media = 6.622   desviacion = 1.49339   min = 4   max = 9
+  x3:  media = 74.83   desviacion = 14.2142   min = 50.3   max = 100
+  x4:  media = 66.8   desviacion = 15.6247   min = 40   max = 95
+  y :  media = 33.955   desviacion = 6.77255
+
+Entrenamiento: 160 muestras
+Prueba: 40 muestras
+
+weights: 4.88581  1.49737  1.52692  2.92372  
+bias: 34.3875
+
+Predicciones sobre el conjunto de prueba:
+  y_hat: 40.4937    y_real: 40.3    error: 0.193733
+  y_hat: 28.4178    y_real: 24.7    error: 3.71779
+  y_hat: 41.6926    y_real: 41.1    error: 0.592551
+  y_hat: 22.285    y_real: 17.1    error: 5.18502
+  y_hat: 41.4991    y_real: 39.2    error: 2.29913
+  y_hat: 38.8598    y_real: 36.2    error: 2.65982
+  y_hat: 30.126    y_real: 32    error: -1.87404
+  y_hat: 35.8816    y_real: 35    error: 0.881596
+  y_hat: 26.5025    y_real: 26.1    error: 0.402531
+  y_hat: 34.3241    y_real: 30.6    error: 3.72414
+  ... (30 predicciones mas)
+
+score (error) entrenamiento: 7.23996
+score (error) prueba:        7.5781
+R2 entrenamiento: 0.837611
+R2 prueba:        0.83965
+
+==================================================
+PARTE 2 - ANALISIS DE MEMORIA
+==================================================
+
+1. MEMORIA GLOBAL
+   modeloGlobal   -> direccion: 0x55ef42509160   tamano: 96 bytes
+   Se crea antes del main y vive hasta que termina el programa.
+
+2. MEMORIA LOCAL (stack)
+   modeloLocal1   -> direccion: 0x7ffc7d5f2020   tamano: 96 bytes
+   modeloLocal2   -> direccion: 0x7ffc7d5f2080   tamano: 96 bytes
+   Se borran solos cuando termina la funcion.
+
+3. MEMORIA DINAMICA (heap)
+   modeloDinamico -> direccion: 0x55ef6ffe36e0   tamano: 96 bytes
+   El puntero esta en el stack, en: 0x7ffc7d5f2010
+   El puntero ocupa 8 bytes (solo guarda la direccion).
+   Hay que borrarlo con delete o queda ocupando memoria.
+
+4. VECTOR DE OBJETOS EN MEMORIA DINAMICA
+   arreglo[0] -> 0x55ef6ffe77c8
+   arreglo[1] -> 0x55ef6ffe7828
+   arreglo[2] -> 0x55ef6ffe7888
+   arreglo[3] -> 0x55ef6ffe78e8
+   arreglo[4] -> 0x55ef6ffe7948
+
+   sizeof(arreglo) = 8 bytes  <- es el tamano del PUNTERO, no del arreglo
+   Tamano real = 5 * 96 = 480 bytes
+   Las direcciones van de 96 en 96 bytes, o sea que los objetos estan pegados uno tras otro.
+
+5. DE DONDE SALE EL TAMANO DEL OBJETO
+   sizeof(RegresionLineal) = 96 bytes
+
+   Lo que tiene adentro:
+     pesos         (vector) : 24 bytes
+     bias          (double) : 8 bytes
+     tasaAprendizaje(double): 8 bytes
+     iteraciones   (int)    : 4 bytes
+     medias        (vector) : 24 bytes
+     desviaciones  (vector) : 24 bytes
+
+   Cada vector ocupa 24 bytes sin importar cuantos numeros guarde,
+   porque por dentro son 3 punteros. Los numeros estan en otro
+   lado de la memoria, no dentro del objeto.
+
+   Ademas el compilador rellena huecos para que todo quede
+   alineado de a 8 bytes, asi que el total puede ser un poco
+   mayor que la suma de las partes.
+
+6. LIBERACION DE MEMORIA
+   Memoria liberada. Cada new con su delete y cada new[] con su delete[].
+   Los punteros quedan en NULL para no usarlos por accidente.
+
+Fin del programa.

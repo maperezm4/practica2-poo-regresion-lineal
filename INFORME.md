@@ -8,7 +8,6 @@
 | Miguel Ángel Pérez Marín | 1018242716 | maperezm4@eafit.edu.co |
 | Julio Cesar Llanes Cuello | 1118835249 | jcllanesc@eafit.edu.co |
 
-**Repositorio:** (completar enlace)
 **Video YouTube (no listado):** (completar enlace)
 **Lenguaje:** C++17 · **Librerías externas:** ninguna (solo STL)
 

@@ -24,7 +24,6 @@ En Windows con MinGW es lo mismo, cambiando `./practica2` por `practica2.exe`.
 | `data/` | Los dos datasets en formato CSV |
 | `evidencias/` | La salida del programa |
 | `INFORME.md` | El informe de la práctica |
-| `GUION_VIDEO.md` | Guion usado para grabar el video |
 
 ## Qué hace el programa
 

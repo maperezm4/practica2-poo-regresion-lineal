@@ -11,7 +11,7 @@ Regresión lineal simple y múltiple en C++, sin librerías externas.
 
 ```bash
 g++ practica2.cpp -o practica2
-./practica2
+practica2.exe
 ```
 
 En Windows con MinGW es lo mismo, cambiando `./practica2` por `practica2.exe`.

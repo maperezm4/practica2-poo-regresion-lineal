@@ -9,7 +9,7 @@
 | Julio Cesar Llanes Cuello | 1118835249 | jcllanesc@eafit.edu.co |
 
 **Repositorio:** https://github.com/maperezm4/practica2-poo-regresion-lineal
-**Video (YouTube, no listado):** (completar enlace)
+**Video:** https://youtu.be/RnYFoRcU0tk
 
 ---
 

@@ -26,7 +26,7 @@ de programación orientada a objetos y el análisis de memoria.
 
 ```bash
 g++ practica2.cpp -o practica2
-./practica2
+practica2.exe
 ```
 
 Los archivos de datos van en la carpeta `data/`.

@@ -55,12 +55,12 @@ vector<double> sacarColumna(vector<vector<double> > X, int col) {
 
 class RegresionLineal {
 private:
-    vector<double> pesos;          // un peso por cada caracteristica
-    double bias;                   // termino independiente
-    double tasaAprendizaje;        // que tan grande es cada paso
-    int iteraciones;               // cuantas veces repetimos el ajuste
+    vector<double> pesos;
+    double bias;
+    double tasaAprendizaje;
+    int iteraciones;
 
-    vector<double> medias;         // para escalar los datos
+    vector<double> medias;
     vector<double> desviaciones;
 
 public:
@@ -71,8 +71,8 @@ public:
     }
 
     void fit(vector<vector<double> > X, vector<double> y) {
-        int m = X.size();          // numero de muestras
-        int n = X[0].size();       // numero de caracteristicas
+        int m = X.size();
+        int n = X[0].size();
 
        
         pesos.clear();
